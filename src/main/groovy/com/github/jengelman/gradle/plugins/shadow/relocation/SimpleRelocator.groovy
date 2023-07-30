@@ -49,6 +49,8 @@ class SimpleRelocator implements Relocator {
     
     private final boolean rawString
 
+    private boolean dontTransformRawString = false
+
     SimpleRelocator() {
 
     }
@@ -61,7 +63,7 @@ class SimpleRelocator implements Relocator {
                            boolean rawString) {
         this.rawString = rawString
 
-        if (rawString) {
+        if (!dontTransformRawString && rawString) {
             this.pathPattern = patt
             this.shadedPathPattern = shadedPattern
 
@@ -241,5 +243,14 @@ class SimpleRelocator implements Relocator {
     @Input
     boolean getRawString() {
         return rawString
+    }
+
+    @Input
+    boolean getDontTransformRawString() {
+        return dontTransformRawString
+    }
+
+    void setDontTransformRawString(boolean dontTransformRawString) {
+        this.dontTransformRawString = dontTransformRawString
     }
 }
